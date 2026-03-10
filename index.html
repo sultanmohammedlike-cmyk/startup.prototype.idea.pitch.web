@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Trade Network Platform (unamed)</title>
+  <!-- Inter font & fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* LAYOUT CONSTRAINTS */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* SECTION SPACING */
+    section {
+      padding: 80px 0;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #2A2A2A;
+      font-size: 1.125rem;
+      max-width: 600px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .btn-primary {
+      background: #0A0A0A;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .btn-primary:hover {
+      background: #2A2A2A;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    .btn-outline {
+      border: 1.5px solid #0A0A0A;
+      color: #0A0A0A;
+      background: white;
+    }
+
+    .btn-outline:hover {
+      background: #f5f5f5;
+      border-color: #2A2A2A;
+    }
+
+    .btn-accent {
+      background: #3B82F6;
+      color: white;
+      box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+    }
+
+    .btn-accent:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(59,130,246,0.4);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.02);
+      padding: 16px 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0A0A0A;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2A2A2A;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #3B82F6;
+    }
+
+    .nav-cta {
+      background: #0A0A0A;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: #2A2A2A;
+      transform: scale(1.02);
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-visual {
+      flex: 1;
+      background: #f8fafc;
+      border-radius: 24px;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: radial-gradient(circle at 20px 20px, #e2e8f0 2px, transparent 2px), 
+                        linear-gradient(to right, #e2e8f0 1px, transparent 1px), 
+                        linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px, 40px 40px;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    }
+
+    .network-pulse {
+      width: 200px;
+      height: 200px;
+      background: rgba(59,130,246,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .network-pulse::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #3B82F6;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    /* PROBLEM / SOLUTION ICON ROWS */
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .icon-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid #f0f0f0;
+      text-align: center;
+      min-width: 140px;
+      transition: all 0.25s;
+    }
+
+    .icon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.04), 0 8px 12px rgba(0,0,0,0.05);
+    }
+
+    .icon-card i {
+      font-size: 2.4rem;
+      color: #3B82F6;
+      margin-bottom: 16px;
+    }
+
+    .icon-card span {
+      display: block;
+      font-weight: 500;
+      color: #0A0A0A;
+    }
+
+    .disconnected-diagram {
+      position: relative;
+      margin: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .disconnected-diagram .line-break {
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #ccc, #ccc 8px, transparent 8px, transparent 16px);
+      margin: 0 10px;
+    }
+    .broken-x {
+      color: #ef4444;
+      font-size: 1.5rem;
+      margin: 0 5px;
+    }
+
+    /* FEATURE GRID */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #f2f2f2;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .feature-card:hover {
+      transform: scale(1.02) translateY(-6px);
+      box-shadow: 0 30px 40px rgba(0,0,0,0.04), 0 10px 20px rgba(0,0,0,0.04);
+      border-color: #eaeaea;
+    }
+
+    .feature-icon {
+      background: #f4f7fb;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .feature-icon i {
+      font-size: 2rem;
+      color: #3B82F6;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: #2A2A2A;
+    }
+
+    /* TRACKING PROTOTYPE */
+    .tracking-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.02);
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .tracking-input-group {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tracking-input-group input {
+      flex: 2;
+      min-width: 240px;
+      padding: 16px 20px;
+      border-radius: 60px;
+      border: 1.5px solid #eaeef2;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .tracking-input-group input:focus {
+      outline: none;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    .tracking-input-group button {
+      flex: 1;
+      white-space: nowrap;
+    }
+
+    .map-container {
+      background: #eef2f6;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      position: relative;
+      border: 1px solid #ddd;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .map-canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #eef2f6;
+      cursor: default;
+    }
+
+    .status-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 20px 0 10px;
+    }
+
+    .status-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 70px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #7e7e7e;
+      transition: color 0.2s;
+      border-top: 3px solid #e0e0e0;
+      padding-top: 10px;
+    }
+
+    .status-step.active {
+      color: #3B82F6;
+      border-top-color: #3B82F6;
+    }
+
+    .status-step i {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .order-ref {
+      font-size: 0.9rem;
+      color: #2A2A2A;
+      margin-top: 16px;
+      background: #f8f9fa;
+      padding: 8px 16px;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    /* utility */
+    .text-center {
+      text-align: center;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eceef2;
+      margin: 40px 0;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .nav-links { display: none; } /* simplify demo, keep logo + cta */
+      .hero { flex-direction: column; }
+      .hero-visual { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY NAVBAR -->
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">🌐</div>
+    <div class="nav-links">
+      <a href="#">Features</a>
+      <a href="#">How it Works</a>
+      <a href="#">Vision</a>
+      <a href="#">Contact</a>
+      <a href="#" class="nav-cta">Join Network</a>
+    </div>
+    <!-- mobile friendly cta -->
+    <a href="#" class="nav-cta" style="display: inline-flex; padding: 8px 20px;">Join</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section>
+  <div class="container hero">
+    <div class="hero-content">
+      <h1>The Global Trade Network Platform</h1>
+      <p>A unified system connecting suppliers, buyers, transport providers, shipping carriers, and logistics agents.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">Explore Network</a>
+        <a href="#" class="btn btn-outline">Join Early Access</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="network-pulse">
+        <i class="fas fa-globe" style="font-size: 4rem; color: #3B82F6;"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section>
+  <div class="container">
+    <h2 class="text-center">Global Trade is Fragmented</h2>
+    <p class="text-center" style="margin: 0 auto 40px;">Disconnected systems create friction and delays.</p>
+
+    <!-- visual representation of disconnected systems -->
+    <div class="disconnected-diagram">
+      <i class="fas fa-industry icon-card" style="font-size: 2rem; padding: 16px;"></i>
+      <span class="broken-x"><i class="fas fa-times-circle"></i></span>
+      <i class="fas fa-truck icon-card" style="font-size: 2rem; padding: 16px;"></i>
+      <span class="broken-x"><i class="fas fa-times-circle"></i></span>
+      <i class="fas fa-ship icon-card" style="font-size: 2rem; padding: 16px;"></i>
+      <span class="broken-x"><i class="fas fa-times-circle"></i></span>
+      <i class="fas fa-clipboard-list icon-card" style="font-size: 2rem; padding: 16px;"></i>
+      <span class="broken-x"><i class="fas fa-times-circle"></i></span>
+      <i class="fas fa-map-marked-alt icon-card" style="font-size: 2rem; padding: 16px;"></i>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 12px; color:#2A2A2A; font-weight:500;">
+      <span>Suppliers</span><span>Brokers</span><span>Freight</span><span>Customs</span><span>Tracking</span>
+    </div>
+    <p style="margin-top: 40px; background: #fafafa; padding: 20px; border-radius: 20px;">
+      ⛓️‍💥 Suppliers, brokers, freight forwarders, customs, and tracking operate in silos — no single source of truth.
+    </p>
+  </div>
+</section>
+
+<!-- SOLUTION SECTION -->
+<section>
+  <div class="container">
+    <h2 class="text-center">One Unified Trade Network</h2>
+    <p class="text-center" style="margin: 0 auto 40px;">All participants connected in real time.</p>
+
+    <div class="icon-row">
+      <div class="icon-card"><i class="fas fa-store"></i><span>Suppliers</span></div>
+      <div class="icon-card"><i class="fas fa-user-check"></i><span>Buyers</span></div>
+      <div class="icon-card"><i class="fas fa-truck"></i><span>Truck transport</span></div>
+      <div class="icon-card"><i class="fas fa-ship"></i><span>Shipping carriers</span></div>
+      <div class="icon-card"><i class="fas fa-briefcase"></i><span>Logistics agents</span></div>
+    </div>
+    <!-- network connecting line visual (minimal) -->
+    <div style="width: 100%; height: 2px; background: linear-gradient(90deg, #3B82F6 20%, #a5c9ff 50%, #3B82F6 80%); margin: 20px 0;"></div>
+    <p style="text-align: center; color:#0A0A0A;"><i class="fas fa-link" style="color:#3B82F6;"></i> Seamless data flow across the entire value chain</p>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section>
+  <div class="container">
+    <h2 class="text-center">Platform capabilities</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-search"></i></div>
+        <h3>Supplier Discovery</h3>
+        <p>Find verified suppliers globally with advanced filtering and compliance data.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-route"></i></div>
+        <h3>Smart Transport Matching</h3>
+        <p>Connect with available trucks and logistics providers in real time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe-asia"></i></div>
+        <h3>Global Freight Integration</h3>
+        <p>Access international shipping routes with integrated rates and documentation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h3>End-to-End Shipment Tracking</h3>
+        <p>Track shipments from origin to destination with event-level visibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-diagram-project"></i></div>
+        <h3>Supply Chain Coordination</h3>
+        <p>Manage sourcing, transport, and delivery in one unified system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER TRACKING PROTOTYPE (IMPORTANT) -->
+<section>
+  <div class="container">
+    <h2 class="text-center">Live tracking prototype</h2>
+    <p class="text-center" style="margin-bottom: 0;">Enter any order ID to see simulated real-time movement.</p>
+
+    <div class="tracking-card">
+      <div class="tracking-input-group">
+        <input type="text" id="orderIdInput" placeholder="Enter Order ID (e.g., GTN9347)" value="GTN9347">
+        <button class="btn btn-accent" id="trackBtn"><i class="fas fa-location-dot"></i> Track Shipment</button>
+      </div>
+
+      <!-- map canvas prototype -->
+      <div class="map-container">
+        <canvas id="shipmentMap" class="map-canvas" width="800" height="280" style="width:100%; height:auto; background:#eef2f6;"></canvas>
+      </div>
+
+      <!-- status steps (dynamic highlight) -->
+      <div class="status-steps" id="statusSteps">
+        <div class="status-step" data-step="0"><i class="fas fa-clipboard-check"></i> Order received</div>
+        <div class="status-step" data-step="1"><i class="fas fa-boxes"></i> Pickup</div>
+        <div class="status-step" data-step="2"><i class="fas fa-truck"></i> In transit</div>
+        <div class="status-step" data-step="3"><i class="fas fa-anchor"></i> At port</div>
+        <div class="status-step" data-step="4"><i class="fas fa-truck-fast"></i> Out for delivery</div>
+        <div class="status-step" data-step="5"><i class="fas fa-check-circle"></i> Delivered</div>
+      </div>
+
+      <div id="orderDisplay" class="order-ref"><i class="far fa-clock"></i> Tracking order: <span id="orderIdSpan">GTN9347</span> — <span id="currentStatus">In transit</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- subtle footer -->
+<footer style="padding: 40px 0; border-top: 1px solid #f0f0f0; color:#2A2A2A; text-align: center;">
+  <div class="container">⚡ Global Trade Network Platform — unified logistics infrastructure</div>
+</footer>
+
+<!-- MAP ANIMATION SCRIPT (interactive prototype) -->
+<script>
+  (function() {
+    const canvas = document.getElementById('shipmentMap');
+    const ctx = canvas.getContext('2d');
+    const orderSpan = document.getElementById('orderIdSpan');
+    const currentStatusSpan = document.getElementById('currentStatus');
+    const trackBtn = document.getElementById('trackBtn');
+    const orderInput = document.getElementById('orderIdInput');
+    const statusSteps = document.querySelectorAll('.status-step');
+
+    // track animation progress 0..1
+    let progress = 0.35; // mid transit for demo visual
+    let animationId = null;
+    let direction = 1; // we'll loop continuously
+
+    // path definition (cubic bezier points normalized 0..1)
+    const start = { x: 0.15, y: 0.7 };
+    const cp1 = { x: 0.35, y: 0.2 };
+    const cp2 = { x: 0.65, y: 0.8 };
+    const end = { x: 0.85, y: 0.25 };
+
+    // cubic bezier point
+    function bezierPoint(t) {
+      const mt = 1 - t;
+      const x = mt*mt*mt * start.x + 3*mt*mt*t * cp1.x + 3*mt*t*t * cp2.x + t*t*t * end.x;
+      const y = mt*mt*mt * start.y + 3*mt*mt*t * cp1.y + 3*mt*t*t * cp2.y + t*t*t * end.y;
+      return { x, y };
+    }
+
+    // draw background map (minimal gray style)
+    function drawMap() {
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // base
+      ctx.fillStyle = '#f2f4f8';
+      ctx.fillRect(0, 0, w, h);
+
+      // grid lines (light)
+      ctx.strokeStyle = '#d4d8dd';
+      ctx.lineWidth = 0.8;
+      for (let i = 0; i <= w; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, h);
+        ctx.strokeStyle = '#dadfe6';
+        ctx.stroke();
+      }
+      for (let i = 0; i <= h; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(w, i);
+        ctx.strokeStyle = '#dadfe6';
+        ctx.stroke();
+      }
+
+      // "water" or subtle landmass
+      ctx.fillStyle = '#dce5f0';
+      ctx.globalAlpha = 0.2;
+      ctx.fillRect(0, h*0.5, w*0.4, h*0.5);
+      ctx.globalAlpha = 1.0;
+
+      // draw route line (black dashed)
+      ctx.beginPath();
+      ctx.moveTo(start.x * w, start.y * h);
+      ctx.bezierCurveTo(cp1.x * w, cp1.y * h, cp2.x * w, cp2.y * h, end.x * w, end.y * h);
+      ctx.strokeStyle = '#2A2A2A';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([8, 6]);
+      ctx.stroke();
+      ctx.setLineDash([]); // reset
+
+      // origin & destination markers
+      ctx.beginPath();
+      ctx.arc(start.x * w, start.y * h, 8, 0, 2*Math.PI);
+      ctx.fillStyle = '#0A0A0A';
+      ctx.fill();
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 12px Inter, sans-serif';
+      ctx.fillText('📍 You', start.x * w + 12, start.y * h - 8);
+
+      ctx.beginPath();
+      ctx.arc(end.x * w, end.y * h, 8, 0, 2*Math.PI);
+      ctx.fillStyle = '#3B82F6';
+      ctx.fill();
+      ctx.fillStyle = '#0A0A0A';
+      ctx.font = 'bold 12px Inter';
+      ctx.fillText('🏁 Dest', end.x * w + 12, end.y * h - 8);
+    }
+
+    // draw moving truck/ship icon (using emoji for simplicity)
+    function drawMovingIcon(t) {
+      const point = bezierPoint(t);
+      const x = point.x * canvas.width;
+      const y = point.y * canvas.height;
+
+      // white background circle for icon
+      ctx.beginPath();
+      ctx.arc(x, y, 16, 0, 2*Math.PI);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0,0,0,0.2)';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = '#3B82F6';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // truck or ship emoji (based on segment could be switched, but we use truck)
+      ctx.font = '20px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Inter", sans-serif';
+      ctx.fillStyle = '#0A0A0A';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🚚', x, y-2); // small offset for better look
+    }
+
+    // update status highlight based on t
+    function updateStatus(t) {
+      let stepIndex = 0;
+      if (t < 0.15) stepIndex = 0;
+      else if (t < 0.3) stepIndex = 1;
+      else if (t < 0.5) stepIndex = 2;
+      else if (t < 0.7) stepIndex = 3;
+      else if (t < 0.9) stepIndex = 4;
+      else stepIndex = 5;
+
+      statusSteps.forEach((step, idx) => {
+        if (idx === stepIndex) step.classList.add('active');
+        else step.classList.remove('active');
+      });
+
+      const statusTexts = ['Order received', 'Pickup', 'In transit', 'At port', 'Out for delivery', 'Delivered'];
+      currentStatusSpan.innerText = statusTexts[stepIndex];
+    }
+
+    // render full map with current progress
+    function render() {
+      drawMap();
+      drawMovingIcon(progress);
+      updateStatus(progress);
+    }
+
+    // animation loop (continuous)
+    function animate() {
+      progress += 0.002;
+      if (progress > 1.0) {
+        progress = 0.0;
+      }
+      render();
+      animationId = requestAnimationFrame(animate);
+    }
+
+    // resize canvas to match container aspect ratio
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = 280; // fixed height, but we set style accordingly
+      render();
+    }
+
+    // start animation
+    window.addEventListener('load', () => {
+      resizeCanvas();
+      if (animationId) cancelAnimationFrame(animationId);
+      animate();
+    });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+    });
+
+    // handle track button: restart animation and update order id
+    trackBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newOrder = orderInput.value.trim() || 'GTN9347';
+      orderSpan.innerText = newOrder;
+
+      // restart progress for fresh feel
+      progress = 0.0;
+      // (animation continues)
+    });
+
+    // initial order display
+    orderSpan.innerText = orderInput.value;
+
+    // optional: change on input enter
+    orderInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        trackBtn.click();
+      }
+    });
+
+    // ensure canvas draws on first load
+    setTimeout(() => resizeCanvas(), 60);
+  })();
+</script>
+
+<!-- ensure status updates show from start -->
+</body>
+</html>
